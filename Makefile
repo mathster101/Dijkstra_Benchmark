@@ -10,3 +10,4 @@ main.o: src/main.cpp
 
 dijkstra.o: src/dijkstra.cpp includes/dijkstra.h
 	g++ -c $(OPLEVEL) src/dijkstra.cpp -o dijkstra.o
+
