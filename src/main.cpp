@@ -1,12 +1,12 @@
 #include "../includes/dijkstra.h"
 #include<iostream>
-#include<cstdio>
+#include<cstdlib>
 #include<ctime>
 
 
 void dbg1()
 {
-    standard_dijkstra();
+    layered_dijkstra();
 }
 
 

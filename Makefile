@@ -1,4 +1,4 @@
-OPLEVEL = -O0
+OPLEVEL = -O2
 
 all: dijkstra.o main.o output
 

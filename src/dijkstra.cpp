@@ -1,21 +1,16 @@
 #include "../includes/dijkstra.h"
 #include<iostream>
-#include<vector>
-#include<string>
-#include<unordered_set>
-#include<cstdio>
-#include<cstring>
 #include<limits>
 #include<algorithm>
 
 #define INFINITY numeric_limits<float>::infinity()
 
 #define NODE_NAME_LEN 4
-#define NUM_CONNECTIONS 5
-#define NUM_NODES 2000
+#define NUM_CONNECTIONS 10
+#define NUM_NODES 5000
 #define FULLYCONNECTED true
 
-#define VERBOSE 0
+#define VERBOSE 1
 
 vector<string> makeNodeNames(const int numberNodes)
 {
@@ -109,6 +104,62 @@ void standard_dijkstra()
     for(auto pair: distLookup)
     {
         cout<<pair.first<<" -> "<<pair.second<<"\n";
+    }
+#endif
+}
+
+void layered_dijkstra()
+{
+    auto graph = makeGraph(NUM_NODES);
+    string start = graph.begin()->first;
+    string end  = graph.rbegin()->first;
+    map<string,float> distLookup;
+    map<int, int> levelCount;
+
+    for(auto node: graph)
+    {
+        if(node.first == start)
+            distLookup[node.first] = 0;
+        else
+            distLookup[node.first] = INFINITY;
+    }
+
+    vector<pair<string,int>> queue;
+    unordered_set<string> seen;
+    queue.push_back(pair(start,0));
+    while(queue.size())
+    {
+        string current = queue.front().first;
+        int level = queue.front().second;
+        queue.erase(queue.begin());
+
+        seen.insert(current);
+        for(auto nbr : graph[current])
+        {
+            if(distLookup[current]+1<distLookup[nbr])
+            {
+                distLookup[nbr] = distLookup[current]+1;
+            }
+
+            if(seen.find(nbr) == seen.end())
+                queue.push_back(pair(nbr,level+1));
+        }
+
+    }
+
+#if VERBOSE == true
+
+    for(auto pair: distLookup)
+    {
+        int level = pair.second;
+        if(levelCount.find(level) == levelCount.end())
+            levelCount[level] = 0;
+        levelCount[level]++;
+    }
+
+    for(auto p: levelCount)
+    {
+        cout<<p.first<<" - "<<p.second<<"\n";
     }
 #endif
 }
