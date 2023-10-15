@@ -2,20 +2,27 @@
 #include<iostream>
 #include<limits>
 #include<algorithm>
+#include<chrono>
+
 
 #define INFINITY numeric_limits<float>::infinity()
 
 #define NODE_NAME_LEN 4
-#define NUM_CONNECTIONS 10
+#define NUM_CONNECTIONS 20
 #define NUM_NODES 5000
 #define FULLYCONNECTED true
 
-#define VERBOSE 1
+#define VERBOSE 0
+
+void print_progress_bar(int percentage){
+  string progress = "RUNNING[" + string(percentage, '*') + string(100 - percentage, ' ') + "]";
+  cout << progress << "\r\033[F\033[F\033[F" << flush;
+}
 
 vector<string> makeNodeNames(const int numberNodes)
 {
     unordered_set<string> nodes;
-    while(nodes.size() < numberNodes)
+    while(nodes.size() < (long long unsigned)numberNodes)
     {
         string name = "";
         for(int i=0; i<NODE_NAME_LEN; i++)
@@ -28,9 +35,9 @@ vector<string> makeNodeNames(const int numberNodes)
     return vector<string>(nodes.begin(), nodes.end());
 }
 
-map<string, vector<string>> makeGraph(const int numberNodes)
+gmap makeGraph(const int numberNodes)
 {
-    map<string, vector<string>> graph;
+    gmap graph;
     auto nodeNames = makeNodeNames(numberNodes);
     string prevNode = "None";
     for(auto node : nodeNames)
@@ -56,7 +63,12 @@ map<string, vector<string>> makeGraph(const int numberNodes)
     return graph;
 }
 
-void standard_dijkstra()
+gmap combineGraphs(gmap a, gmap b)
+{
+    return gmap();
+}
+
+void standardDijkstra()
 {
     auto graph = makeGraph(NUM_NODES);
     string start = graph.begin()->first;
@@ -106,60 +118,67 @@ void standard_dijkstra()
         cout<<pair.first<<" -> "<<pair.second<<"\n";
     }
 #endif
+
+    return;
 }
 
-void layered_dijkstra()
+void DijkstraWithTermChecks()
 {
-    auto graph = makeGraph(NUM_NODES);
-    string start = graph.begin()->first;
-    string end  = graph.rbegin()->first;
-    map<string,float> distLookup;
-    map<int, int> levelCount;
+    while(1)
+    {    
+        auto graph = makeGraph(NUM_NODES);
+        string start = graph.begin()->first;
+        string end  = graph.rbegin()->first;
+        map<string,float> distLookup;
 
-    for(auto node: graph)
-    {
-        if(node.first == start)
-            distLookup[node.first] = 0;
-        else
-            distLookup[node.first] = INFINITY;
-    }
-
-    vector<pair<string,int>> queue;
-    unordered_set<string> seen;
-    queue.push_back(pair(start,0));
-    while(queue.size())
-    {
-        string current = queue.front().first;
-        int level = queue.front().second;
-        queue.erase(queue.begin());
-
-        seen.insert(current);
-        for(auto nbr : graph[current])
+        for(auto node: graph)
         {
-            if(distLookup[current]+1<distLookup[nbr])
-            {
-                distLookup[nbr] = distLookup[current]+1;
-            }
-
-            if(seen.find(nbr) == seen.end())
-                queue.push_back(pair(nbr,level+1));
+            if(node.first == start)
+                distLookup[node.first] = 0;
+            else
+                distLookup[node.first] = INFINITY;
         }
 
+        vector<string> queue;
+        unordered_set<string> seen;
+        queue.push_back(start);
+        while(queue.size())
+        {
+            string current = queue.front();
+            queue.erase(queue.begin());
+            seen.insert(current);
+            for(auto nbr : graph[current])
+            {
+                if(distLookup[current]+1<distLookup[nbr])
+                {
+                    distLookup[nbr] = distLookup[current]+1;
+                }
+
+                if(std::find(queue.begin(), queue.end(), nbr) == queue.end() && seen.find(nbr) == seen.end())
+                    queue.push_back(nbr);
+            }
+            if(quit)
+                return;
+
+        }
+        ++perfCounter;
     }
 
-#if VERBOSE == true
+    return;    
+}
 
-    for(auto pair: distLookup)
+int wrapper()
+{
+    auto start = std::chrono::system_clock::now();
+
+    while(true)
     {
-        int level = pair.second;
-        if(levelCount.find(level) == levelCount.end())
-            levelCount[level] = 0;
-        levelCount[level]++;
+        auto now = std::chrono::system_clock::now();
+        int elapsed = std::chrono::duration<double, std::milli>(now - start).count(); 
+        if(elapsed >= 10000)
+            break;
+        print_progress_bar((int)(100*elapsed/10000));   
     }
 
-    for(auto p: levelCount)
-    {
-        cout<<p.first<<" - "<<p.second<<"\n";
-    }
-#endif
+    return perfCounter;
 }
