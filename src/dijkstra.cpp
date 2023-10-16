@@ -11,7 +11,7 @@
 #define NUM_CONNECTIONS 20
 #define NUM_NODES 5000
 #define FULLYCONNECTED true
-#define RUNTIME 60000
+#define RUNTIME 60000//1 minute
 #define VERBOSE 0
 
 void print_progress_bar(int percentage){
@@ -159,7 +159,6 @@ void DijkstraWithTermChecks()
             }
             if(quit)
                 return;
-
         }
         ++perfCounter;
     }

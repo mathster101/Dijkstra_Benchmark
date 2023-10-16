@@ -18,7 +18,7 @@ void Clear()
 }
 
 
-void dbg1()
+void multicore()
 {
     Clear();   
     int perfCountercopy = wrapper();
@@ -28,9 +28,9 @@ void dbg1()
 }
 
 
-int main(){
+int main()
+{
     srand(time(NULL));
-
-    dbg1();
+    multicore();
     return 0;
 }

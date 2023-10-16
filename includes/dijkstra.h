@@ -8,8 +8,8 @@
 using namespace std;
 typedef map<string, vector<string>> gmap;
 //////////////////////////////////////////////////////
-static atomic<bool> quit = false;
-static atomic<long> perfCounter = 0;
+static atomic<bool> quit{false};
+static atomic<long> perfCounter{0};
 //////////////////////////////////////////////////////
 void print_progress_bar(int percentage);//stolen from https://stackoverflow.com/a/30831414
 vector<string> makeNodeNames(const int numberNodes);
