@@ -1,5 +1,5 @@
 OPLEVEL = -O2
-MISC_FLAGS = -lpthread -Wall -std=c++11 -pedantic
+MISC_FLAGS = -lpthread -Wall -std=c++11 -pedantic 
 
 all: dijkstra.o main.o output
 
