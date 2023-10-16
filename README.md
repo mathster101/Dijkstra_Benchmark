@@ -8,6 +8,6 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 	 - run make in main directory
 	 - run the 'output' file
 ## Recorded Scores (in no particular order)
-- Amd Ryzen 9 6900HS Creator Edition (Windows) - **10029**
+- Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
 
 
