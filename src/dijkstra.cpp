@@ -3,7 +3,7 @@
 #include<limits>
 #include<algorithm>
 #include<chrono>
-
+#include<thread>
 
 #define INFINITY numeric_limits<float>::infinity()
 
@@ -11,7 +11,7 @@
 #define NUM_CONNECTIONS 20
 #define NUM_NODES 5000
 #define FULLYCONNECTED true
-
+#define RUNTIME 60000
 #define VERBOSE 0
 
 void print_progress_bar(int percentage){
@@ -169,15 +169,27 @@ void DijkstraWithTermChecks()
 
 int wrapper()
 {
+    auto threadCount = std::thread::hardware_concurrency();
     auto start = std::chrono::system_clock::now();
-
+    vector<thread> threads;
+    for(unsigned i = 0; i < threadCount; i++)
+    {
+        thread t1(DijkstraWithTermChecks);
+        t1.detach();
+        threads.push_back(move(t1));
+    }
+    
     while(true)
     {
         auto now = std::chrono::system_clock::now();
         int elapsed = std::chrono::duration<double, std::milli>(now - start).count(); 
-        if(elapsed >= 10000)
+        if(elapsed >= RUNTIME)
+        {
+            quit = true;
             break;
-        print_progress_bar((int)(100*elapsed/10000));   
+        }
+        print_progress_bar((int)(100*elapsed/RUNTIME));
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));//reduces system load from this pbar thread
     }
 
     return perfCounter;

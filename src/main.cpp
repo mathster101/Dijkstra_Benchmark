@@ -21,8 +21,10 @@ void Clear()
 void dbg1()
 {
     Clear();   
-    wrapper();
+    int perfCountercopy = wrapper();
     Clear();
+    cout<<"MULTICORE SCORE : "<<perfCountercopy;
+    getchar();
 }
 
 
