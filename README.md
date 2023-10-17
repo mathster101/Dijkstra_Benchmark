@@ -9,5 +9,5 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 	 - run the 'output' file
 ## Recorded Scores (in no particular order)
 - Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
-
+- Intel i7-7700HQ (Ubuntu) -  **356**
 

@@ -23,7 +23,8 @@ void multicore()
     Clear();   
     int perfCountercopy = wrapper();
     Clear();
-    cout<<"MULTICORE SCORE : "<<perfCountercopy;
+    cout<<"MULTICORE SCORE : "<<perfCountercopy<<"\n";
+    cout<<"enter any key to exit\n";
     getchar();
 }
 
