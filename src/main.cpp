@@ -2,7 +2,7 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
-
+#include<thread>
 void Clear()
 {
     //'borrowed' from https://stackoverflow.com/a/52895729
@@ -24,6 +24,7 @@ void multicore()
     int perfCountercopy = wrapper();
     Clear();
     cout<<"MULTICORE SCORE : "<<perfCountercopy<<"\n";
+    std::cout<<std::thread::hardware_concurrency()<<" threads used/detected\n";
     cout<<"enter any key to exit\n";
     getchar();
 }
