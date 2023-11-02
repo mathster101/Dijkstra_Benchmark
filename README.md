@@ -11,3 +11,4 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 - Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
 - Intel i7-7700HQ (Ubuntu) -  **356**
 - Apple M1 Pro (8 cores) (MacOS) - **1231**
+- Intel Xeon Gold 6226R (Ubuntu) - **850**
