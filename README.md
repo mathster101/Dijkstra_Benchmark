@@ -3,7 +3,8 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 
 ## How to Run
 
- 1. Run pre-built executables 
+ 1. Run pre-built executables
+	 - you might need to adjust permissions (chmod +x <file>)
  2. Build from source - 
 	 - run make in main directory
 	 - run the 'output' file
