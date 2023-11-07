@@ -68,59 +68,6 @@ gmap combineGraphs(gmap a, gmap b)
     return gmap();
 }
 
-void standardDijkstra()
-{
-    auto graph = makeGraph(NUM_NODES);
-    string start = graph.begin()->first;
-    string end  = graph.rbegin()->first;
-    map<string,float> distLookup;
-
-    for(auto node: graph)
-    {
-        if(node.first == start)
-            distLookup[node.first] = 0;
-        else
-            distLookup[node.first] = INFINITY;
-    }
-
-    vector<string> queue;
-    unordered_set<string> seen;
-    queue.push_back(start);
-    while(queue.size())
-    {
-        string current = queue.front();
-        queue.erase(queue.begin());
-        seen.insert(current);
-        for(auto nbr : graph[current])
-        {
-            if(distLookup[current]+1<distLookup[nbr])
-            {
-                distLookup[nbr] = distLookup[current]+1;
-            }
-
-            if(std::find(queue.begin(), queue.end(), nbr) == queue.end() && seen.find(nbr) == seen.end())
-                queue.push_back(nbr);
-        }
-
-    }
-#if VERBOSE == true
-    cout<<"#####Graph####\n";
-    for(auto pair: graph)
-    {
-        cout<<pair.first<<" -> ";
-        for(auto node : pair.second)
-            cout<<node<<" ";
-        cout<<"\n";
-    }
-    cout<<"\n####Dists####\n";
-    for(auto pair: distLookup)
-    {
-        cout<<pair.first<<" -> "<<pair.second<<"\n";
-    }
-#endif
-
-    return;
-}
 
 void DijkstraWithTermChecks()
 {

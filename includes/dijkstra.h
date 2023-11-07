@@ -15,7 +15,6 @@ void print_progress_bar(int percentage);//stolen from https://stackoverflow.com/
 vector<string> makeNodeNames(const int numberNodes);
 gmap makeGraph(const int numberNodes);
 gmap combineGraphs(gmap a, gmap b);
-void standardDijkstra();
 void DijkstraWithTermChecks();
 int wrapper();
 //////////////////////////////////////////////////////
