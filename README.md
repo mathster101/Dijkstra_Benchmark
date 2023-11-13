@@ -8,8 +8,10 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
  2. Build from source - 
 	 - run make in main directory
 	 - run the 'output' file
-## Recorded Scores (in no particular order)
-- Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
-- Intel i7-7700HQ (Ubuntu) -  **356**
+## Recorded Scores
 - Apple M1 Pro (8 cores) (MacOS) - **1231**
+- Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
 - Intel Xeon Gold 6226R (Ubuntu) - **850**
+- Intel i5-1235U (Windows) - **672**
+- Intel i7-7700HQ (Ubuntu) -  **356**
+
