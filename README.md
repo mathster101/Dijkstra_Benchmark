@@ -11,6 +11,7 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 ## Recorded Scores
 - Apple M1 Pro (8 cores) (MacOS) - **1231**
 - Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
+- Intel Xeon CPU E5-2660v3 (Ubuntu) - **970**
 - Intel Xeon Gold 6226R (Ubuntu) - **850**
 - Intel i5-1235U (Windows) - **672**
 - Intel i7-7700HQ (Ubuntu) -  **356**
