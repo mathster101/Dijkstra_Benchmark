@@ -9,6 +9,7 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 	 - run make in main directory
 	 - run the 'output' file
 ## Recorded Scores
+- Intel i7-13700K (Windows) - **2345**
 - Apple M1 Pro (8 cores) (MacOS) - **1231**
 - Amd Ryzen 9 6900HS Creator Edition (Windows) - **1029**
 - Intel Xeon CPU E5-2660v3 (Ubuntu) - **970**
