@@ -1,9 +1,0 @@
-{
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "c:\\Dev\\Dijkstra",
-            "binaryPath": "c:\\Dev\\Dijkstra\\output",
-            "binaryArgs": []
-        }
-    ]
-}
