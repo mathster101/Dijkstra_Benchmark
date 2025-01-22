@@ -16,4 +16,5 @@ Simple benchmark that uses multithreading, graphs and the dijkstra algorithm to 
 - Intel Xeon Gold 6226R (Ubuntu) - **850**
 - Intel i5-1235U (Windows) - **672**
 - Intel i7-7700HQ (Ubuntu) -  **356**
+- Intel i5-7500 (Ubuntu) - **330**
 
